@@ -6,22 +6,27 @@ namespace PetRock
 {
     public partial class Form1 : Form
     {
-        private PictureBox pictureBox;
         private bool dragging = false;
         private Point dragCursorPoint;
-        private Point dragImagePoint;
+        private Point dragFormPoint;
 
         public Form1()
         {
             InitializeComponent();
+            this.FormBorderStyle = FormBorderStyle.None;
+            this.TopMost = true;
+            this.ShowInTaskbar = false;
+            this.StartPosition = FormStartPosition.Manual;
+            this.Location = new Point(200, 200);
+            this.BackColor = Color.LimeGreen;
+            this.TransparencyKey = Color.LimeGreen;
 
-            this.Text = "Drag Image Example";
-            this.Size = new Size(800, 600);
-
-            pictureBox = new PictureBox();
+            PictureBox pictureBox = new PictureBox();
             pictureBox.Image = Image.FromFile("rock.png");
             pictureBox.SizeMode = PictureBoxSizeMode.AutoSize;
-            pictureBox.Location = new Point(100, 100);
+            pictureBox.Location = new Point(0, 0);
+
+            this.ClientSize = pictureBox.Size;
 
             pictureBox.MouseDown += PictureBox_MouseDown;
             pictureBox.MouseMove += PictureBox_MouseMove;
@@ -30,11 +35,24 @@ namespace PetRock
             this.Controls.Add(pictureBox);
         }
 
+        protected override bool ShowWithoutActivation => true;
+
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                cp.ExStyle |= 0x08000000;
+                cp.ExStyle |= 0x00000080;
+                return cp;
+            }
+        }
+
         private void PictureBox_MouseDown(object sender, MouseEventArgs e)
         {
             dragging = true;
             dragCursorPoint = Cursor.Position;
-            dragImagePoint = pictureBox.Location;
+            dragFormPoint = this.Location;
         }
 
         private void PictureBox_MouseMove(object sender, MouseEventArgs e)
@@ -43,7 +61,7 @@ namespace PetRock
             {
                 int diffX = Cursor.Position.X - dragCursorPoint.X;
                 int diffY = Cursor.Position.Y - dragCursorPoint.Y;
-                pictureBox.Location = new Point(dragImagePoint.X + diffX, dragImagePoint.Y + diffY);
+                this.Location = new Point(dragFormPoint.X + diffX, dragFormPoint.Y + diffY);
             }
         }
 
