@@ -30,12 +30,14 @@ namespace PetRock
             pictureBox.Image = Image.FromFile("rock.png");
             pictureBox.SizeMode = PictureBoxSizeMode.AutoSize;
             pictureBox.Location = new Point(0, 0);
+            pictureBox.Cursor = Cursors.Hand;
 
             this.ClientSize = pictureBox.Size;
 
             pictureBox.MouseDown += PictureBox_MouseDown;
             pictureBox.MouseMove += PictureBox_MouseMove;
             pictureBox.MouseUp += PictureBox_MouseUp;
+            pictureBox.DoubleClick += PictureBox_DoubleClick;
 
             this.Controls.Add(pictureBox);
 
@@ -79,6 +81,12 @@ namespace PetRock
         {
             dragging = false;
         }
+
+        private void PictureBox_DoubleClick(object sender, EventArgs e)
+        {
+            MessageBox.Show("The rock is being petted!");
+        }
+
 
         private void DropTimer_Tick(object sender, EventArgs e)
         {
