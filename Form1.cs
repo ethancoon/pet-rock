@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -10,6 +11,10 @@ namespace PetRock
         private Point dragCursorPoint;
         private Point dragFormPoint;
         private Timer dropTimer;
+        private Timer idleTimer;
+        private const int ticksUntilDropMax = 100;
+        private int ticksUntilDrop = ticksUntilDropMax;
+        // Probably adapt this to be based on where the taskbar is
         private int targetY = 400;
         private double acceleration = 9.8;
         private double velocity = 0;
@@ -52,6 +57,11 @@ namespace PetRock
             dropTimer.Interval = 20;
             dropTimer.Tick += DropTimer_Tick;
             dropTimer.Start();
+
+            idleTimer = new Timer();
+            idleTimer.Interval = 20;
+            idleTimer.Tick += IdleTimer_Tick;
+            idleTimer.Start();
         }
 
         protected override bool ShowWithoutActivation => true;
@@ -81,6 +91,7 @@ namespace PetRock
                 int diffX = Cursor.Position.X - dragCursorPoint.X;
                 int diffY = Cursor.Position.Y - dragCursorPoint.Y;
                 this.Location = new Point(dragFormPoint.X + diffX, dragFormPoint.Y + diffY);
+                currentY = this.Location.Y;
 
                 if (nameLabelForm != null && nameLabelForm.Visible)
                 {
@@ -138,6 +149,7 @@ namespace PetRock
                 if (currentY >= targetY)
                 {
                     currentY = targetY;
+                    velocity = 0;
                     dropTimer.Stop();
                 }
                 this.Location = new Point(this.Location.X, (int)Math.Round(currentY));
@@ -158,6 +170,20 @@ namespace PetRock
             nameLabelForm.Show();
             nameLabelForm.Update();
         }
+        private void IdleTimer_Tick(Object sender, EventArgs e)
+        {
+            ticksUntilDrop -= 1;
+            if (dropTimer.Enabled || Location.Y >= targetY)
+            {
+                ticksUntilDrop = ticksUntilDropMax;
+            }
+            else if (ticksUntilDrop < 0)
+            {
+                dropTimer.Start();
+                ticksUntilDrop = ticksUntilDropMax;
+            }
+        }
+
 
         private void PictureBox_MouseLeave(object sender, EventArgs e)
         {
