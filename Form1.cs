@@ -15,6 +15,10 @@ namespace PetRock
         private double velocity = 0;
         private double currentY;
 
+        private string rockName = "Rocky"; 
+        private NameLabelForm nameLabelForm;
+
+
         public Form1()
         {
             InitializeComponent();
@@ -38,6 +42,9 @@ namespace PetRock
             pictureBox.MouseMove += PictureBox_MouseMove;
             pictureBox.MouseUp += PictureBox_MouseUp;
             pictureBox.DoubleClick += PictureBox_DoubleClick;
+            pictureBox.MouseEnter += PictureBox_MouseEnter;
+            pictureBox.MouseLeave += PictureBox_MouseLeave;
+    
 
             this.Controls.Add(pictureBox);
 
@@ -74,8 +81,16 @@ namespace PetRock
                 int diffX = Cursor.Position.X - dragCursorPoint.X;
                 int diffY = Cursor.Position.Y - dragCursorPoint.Y;
                 this.Location = new Point(dragFormPoint.X + diffX, dragFormPoint.Y + diffY);
+
+                if (nameLabelForm != null && nameLabelForm.Visible)
+                {
+                    int labelX = this.Location.X + 100;
+                    int labelY = this.Location.Y - nameLabelForm.Height + 100;
+                    nameLabelForm.Location = new Point(labelX, labelY);
+                }
             }
         }
+
 
         private void PictureBox_MouseUp(object sender, MouseEventArgs e)
         {
@@ -130,5 +145,24 @@ namespace PetRock
         }
 
 
+        private void PictureBox_MouseEnter(object sender, EventArgs e)
+        {
+            if (nameLabelForm == null)
+            {
+                nameLabelForm = new NameLabelForm(rockName);
+            }
+
+            int labelX = this.Location.X + 100;
+            int labelY = this.Location.Y - nameLabelForm.Height + 100;
+            nameLabelForm.Location = new Point(labelX, labelY);
+            nameLabelForm.Show();
+            nameLabelForm.Update();
+        }
+
+        private void PictureBox_MouseLeave(object sender, EventArgs e)
+        {
+            if (nameLabelForm != null)
+                nameLabelForm.Hide();
+        }
     }
 }
