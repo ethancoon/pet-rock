@@ -84,7 +84,19 @@ namespace PetRock
 
         private void PictureBox_DoubleClick(object sender, EventArgs e)
         {
-            NotificationForm notification = new NotificationForm("the rock is pleased");
+            // generate random number to choose message
+            string[] outcomes =
+            {
+                "the rock seems pleased",
+                "the rock seems unphased",
+                "the rock seems displeased"
+            };
+
+            Random rand = new Random();
+            int index = rand.Next(outcomes.Length);
+            string selectedMessage = outcomes[index];
+
+            NotificationForm notification = new NotificationForm(selectedMessage);
             notification.Location = new Point(this.Location.X + this.Width, this.Location.Y);
             notification.Show();
 
