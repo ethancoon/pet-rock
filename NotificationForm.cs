@@ -17,7 +17,7 @@ namespace PetRock
             this.FormBorderStyle = FormBorderStyle.None;
             this.TopMost = true;
             this.ShowInTaskbar = false;
-            this.BackColor = Color.Magenta;
+            this.BackColor = Color.Black;
             this.TransparencyKey = Color.Magenta;
             this.StartPosition = FormStartPosition.Manual;
             this.messageFont = new Font("Segoe Script", 24, FontStyle.Bold);
