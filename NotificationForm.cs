@@ -1,39 +1,47 @@
 ﻿using System;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Windows.Forms;
 
 namespace PetRock
 {
     public class NotificationForm : Form
     {
-        private Label messageLabel;
+        private string message;
+        private Font messageFont;
+        private Color textColor = Color.White;
 
         public NotificationForm(string message)
         {
+            this.message = message;
             this.FormBorderStyle = FormBorderStyle.None;
             this.TopMost = true;
             this.ShowInTaskbar = false;
-            this.BackColor = Color.LimeGreen;
-            this.TransparencyKey = Color.LimeGreen;
+            this.BackColor = Color.Magenta;
+            this.TransparencyKey = Color.Magenta;
             this.StartPosition = FormStartPosition.Manual;
-
-            messageLabel = new Label();
-            messageLabel.Text = message;
-            messageLabel.AutoSize = false;
-            messageLabel.TextAlign = ContentAlignment.MiddleCenter;
-            messageLabel.ForeColor = Color.White;
-            messageLabel.Font = new Font("Segoe Script", 24, FontStyle.Bold);
-            messageLabel.BackColor = Color.Transparent;
-            messageLabel.Dock = DockStyle.Fill;
-            this.Controls.Add(messageLabel);
+            this.messageFont = new Font("Segoe Script", 24, FontStyle.Bold);
 
             Size textSize;
             using (Graphics g = this.CreateGraphics())
             {
-                textSize = g.MeasureString(message, messageLabel.Font).ToSize();
+                textSize = Size.Ceiling(g.MeasureString(message, messageFont));
             }
             int padding = 20;
             this.Size = new Size(textSize.Width + padding, textSize.Height + padding);
+        }
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            e.Graphics.TextRenderingHint = TextRenderingHint.AntiAliasGridFit;
+            using (SolidBrush brush = new SolidBrush(textColor))
+            {
+                StringFormat format = new StringFormat();
+                format.Alignment = StringAlignment.Center;
+                format.LineAlignment = StringAlignment.Center;
+                Rectangle rect = new Rectangle(0, 0, this.Width, this.Height);
+                e.Graphics.DrawString(message, messageFont, brush, rect, format);
+            }
         }
     }
 }

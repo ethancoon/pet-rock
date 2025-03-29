@@ -84,32 +84,30 @@ namespace PetRock
 
         private void PictureBox_DoubleClick(object sender, EventArgs e)
         {
-            // generate random number to choose message
-            string[] outcomes =
-            {
+            string[] outcomes = {
                 "the rock seems pleased",
                 "the rock seems unphased",
                 "the rock seems displeased"
             };
 
             Random rand = new Random();
-            int index = rand.Next(outcomes.Length);
-            string selectedMessage = outcomes[index];
+            string selectedMessage = outcomes[rand.Next(outcomes.Length)];
 
-            NotificationForm notification = new NotificationForm(selectedMessage);
-            notification.Location = new Point(this.Location.X + this.Width, this.Location.Y);
+            LayeredNotificationForm notification = new LayeredNotificationForm(selectedMessage);
+            int notificationX = this.Location.X + this.Width;
+            int notificationY = this.Location.Y + (this.Height / 2) - (notification.Height / 2);
+            notification.Location = new Point(notificationX, notificationY);
             notification.Show();
 
-            Timer closeTimer = new Timer();
-            closeTimer.Interval = 2000;
+            Timer closeTimer = new Timer { Interval = 2000 };
             closeTimer.Tick += (s, args) =>
             {
                 closeTimer.Stop();
                 notification.Close();
             };
             closeTimer.Start();
-
         }
+
 
         private void DropTimer_Tick(object sender, EventArgs e)
         {
