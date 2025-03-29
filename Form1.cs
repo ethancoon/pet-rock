@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Drawing;
+using System.Media;
 using System.Windows.Forms;
 
 namespace PetRock
@@ -50,6 +51,9 @@ namespace PetRock
             dropTimer.Interval = 20;
             dropTimer.Tick += DropTimer_Tick;
             dropTimer.Start();
+            SoundPlayer player = new SoundPlayer("Wind woosh.wav");
+            player.Play();
+
 
             idleTimer = new Timer();
             idleTimer.Interval = 20;
@@ -135,7 +139,10 @@ namespace PetRock
                 {
                     currentY = targetY;
                     velocity = 0;
+                    SoundPlayer player = new SoundPlayer("rock impact.wav");
+                    player.Play();
                     dropTimer.Stop();
+
                 }
                 this.Location = new Point(this.Location.X, (int)Math.Round(currentY));
             }
@@ -152,6 +159,8 @@ namespace PetRock
             {
                 dropTimer.Start();
                 ticksUntilDrop = ticksUntilDropMax;
+                SoundPlayer player = new SoundPlayer("Wind woosh.wav");
+                player.Play();
             }
         }
 
