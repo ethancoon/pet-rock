@@ -84,9 +84,20 @@ namespace PetRock
 
         private void PictureBox_DoubleClick(object sender, EventArgs e)
         {
-            MessageBox.Show("The rock is being petted!");
-        }
+            NotificationForm notification = new NotificationForm("the rock is pleased");
+            notification.Location = new Point(this.Location.X + this.Width, this.Location.Y);
+            notification.Show();
 
+            Timer closeTimer = new Timer();
+            closeTimer.Interval = 2000;
+            closeTimer.Tick += (s, args) =>
+            {
+                closeTimer.Stop();
+                notification.Close();
+            };
+            closeTimer.Start();
+
+        }
 
         private void DropTimer_Tick(object sender, EventArgs e)
         {
