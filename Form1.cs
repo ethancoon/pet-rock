@@ -9,6 +9,11 @@ namespace PetRock
         private bool dragging = false;
         private Point dragCursorPoint;
         private Point dragFormPoint;
+        private Timer dropTimer;
+        private int targetY = 400;
+        private double acceleration = 9.8;
+        private double velocity = 0;
+        private double currentY;
 
         public Form1()
         {
@@ -17,7 +22,7 @@ namespace PetRock
             this.TopMost = true;
             this.ShowInTaskbar = false;
             this.StartPosition = FormStartPosition.Manual;
-            this.Location = new Point(200, 200);
+            this.Location = new Point(200, -200);
             this.BackColor = Color.LimeGreen;
             this.TransparencyKey = Color.LimeGreen;
 
@@ -33,6 +38,11 @@ namespace PetRock
             pictureBox.MouseUp += PictureBox_MouseUp;
 
             this.Controls.Add(pictureBox);
+
+            dropTimer = new Timer();
+            dropTimer.Interval = 20;
+            dropTimer.Tick += DropTimer_Tick;
+            dropTimer.Start();
         }
 
         protected override bool ShowWithoutActivation => true;
@@ -69,5 +79,23 @@ namespace PetRock
         {
             dragging = false;
         }
+
+        private void DropTimer_Tick(object sender, EventArgs e)
+        {
+            if (!dragging && this.Location.Y < targetY)
+            {
+                double dt = dropTimer.Interval / 75.0;
+                velocity += acceleration * dt;
+                currentY += velocity * dt;
+                if (currentY >= targetY)
+                {
+                    currentY = targetY;
+                    dropTimer.Stop();
+                }
+                this.Location = new Point(this.Location.X, (int)Math.Round(currentY));
+            }
+        }
+
+
     }
 }
