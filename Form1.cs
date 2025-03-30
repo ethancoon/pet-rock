@@ -77,6 +77,7 @@ namespace PetRock
             }
 
             renameItem.Click += RenameItem_Click;
+            exitItem.Click += Quit;
 
             contextMenu.Items.Add(customizeItem);
             contextMenu.Items.Add(renameItem);
@@ -276,6 +277,11 @@ namespace PetRock
         {
             if (nameLabelForm != null)
                 nameLabelForm.Hide();
+        }
+
+        private void Quit(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 
