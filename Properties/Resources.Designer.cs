@@ -83,6 +83,16 @@ namespace PetRock.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] rockquiet {
+            get {
+                object obj = ResourceManager.GetObject("rockquiet", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] windwoosh {
             get {
                 object obj = ResourceManager.GetObject("windwoosh", resourceCulture);

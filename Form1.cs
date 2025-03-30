@@ -144,6 +144,13 @@ namespace PetRock
             notification.Location = new Point(notificationX, notificationY);
             notification.Show();
 
+            byte[] soundData = Properties.Resources.rockquiet;
+            using (MemoryStream ms = new MemoryStream(soundData))
+            {
+                SoundPlayer player = new SoundPlayer(ms);
+                player.Play();
+            }
+
             Timer closeTimer = new Timer();
             closeTimer.Interval = 2000;
             closeTimer.Tick += (s, args) =>

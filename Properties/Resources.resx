@@ -124,6 +124,9 @@
   <data name="rockimpact" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>rockimpact.wav;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="rockquiet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>rockquiet.wav;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="windwoosh" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>windwoosh.wav;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
