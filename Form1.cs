@@ -3,6 +3,8 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Media;
+using System.Reflection;
+using System.Security.Cryptography.X509Certificates;
 using System.Windows.Forms;
 
 namespace PetRock
@@ -22,6 +24,7 @@ namespace PetRock
         private double velocity = 0;
         private double currentY;
         private ContextMenuStrip contextMenu;
+        private PictureBox pictureBox;
 
         private string rockName = "Rocky";
         private NameLabelForm nameLabelForm;
@@ -38,7 +41,7 @@ namespace PetRock
             this.BackColor = Color.LimeGreen;
             this.TransparencyKey = Color.LimeGreen;
 
-            PictureBox pictureBox = new PictureBox();
+            pictureBox = new PictureBox();
             byte[] imageData = Properties.Resources.rock;
             using (MemoryStream ms = new MemoryStream(imageData))
             {
@@ -64,6 +67,14 @@ namespace PetRock
             ToolStripMenuItem customizeItem = new ToolStripMenuItem("Customize");
             ToolStripMenuItem renameItem = new ToolStripMenuItem("Rename");
             ToolStripMenuItem exitItem = new ToolStripMenuItem("Exit");
+
+            string[] styles = { "rock", "rockwizard", "rockhalo", "rockflowers", "rockbowtie" };
+            foreach (string style in styles)
+            {
+                ToolStripMenuItem styleItem = new ToolStripMenuItem(style);
+                styleItem.Click += (s, e) => ApplyStyle(style);
+                customizeItem.DropDownItems.Add(styleItem);
+            }
 
             renameItem.Click += RenameItem_Click;
 
@@ -93,6 +104,20 @@ namespace PetRock
             idleTimer.Interval = 20;
             idleTimer.Tick += IdleTimer_Tick;
             idleTimer.Start();
+        }
+
+        private void ApplyStyle(String str)
+        {
+            byte[] imageData = (byte[]) Properties.Resources.ResourceManager.GetObject(str);
+            if (imageData == null)
+            {
+                imageData = Properties.Resources.rockwizard;
+            }
+            using (MemoryStream ms = new MemoryStream(imageData))
+            {
+                Image img = Image.FromStream(ms);
+                pictureBox.Image = img;
+            }
         }
 
         private void RenameItem_Click(object sender, EventArgs e)

@@ -73,6 +73,36 @@ namespace PetRock.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] rockbowtie {
+            get {
+                object obj = ResourceManager.GetObject("rockbowtie", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] rockflowers {
+            get {
+                object obj = ResourceManager.GetObject("rockflowers", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] rockhalo {
+            get {
+                object obj = ResourceManager.GetObject("rockhalo", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] rockimpact {
             get {
                 object obj = ResourceManager.GetObject("rockimpact", resourceCulture);
@@ -86,6 +116,16 @@ namespace PetRock.Properties {
         internal static byte[] rockquiet {
             get {
                 object obj = ResourceManager.GetObject("rockquiet", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] rockwizard {
+            get {
+                object obj = ResourceManager.GetObject("rockwizard", resourceCulture);
                 return ((byte[])(obj));
             }
         }

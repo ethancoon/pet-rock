@@ -121,11 +121,23 @@
   <data name="rock" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>rock.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="rockbowtie" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>rockbowtie.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="rockflowers" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>rockflowers.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="rockhalo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>rockhalo.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="rockimpact" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>rockimpact.wav;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="rockquiet" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>rockquiet.wav;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="rockwizard" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>rockwizard.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="windwoosh" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>windwoosh.wav;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
