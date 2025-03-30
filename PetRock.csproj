@@ -33,6 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -52,6 +53,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="NameInputDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NameInputDialog.Designer.cs">
+      <DependentUpon>NameInputDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="LayeredNotificationForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -63,6 +70,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="NameInputDialog.resx">
+      <DependentUpon>NameInputDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

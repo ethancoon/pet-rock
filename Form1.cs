@@ -21,8 +21,9 @@ namespace PetRock
         private double acceleration = 9.8;
         private double velocity = 0;
         private double currentY;
+        private ContextMenuStrip contextMenu;
 
-        private string rockName = "Rocky"; 
+        private string rockName = "Rocky";
         private NameLabelForm nameLabelForm;
 
 
@@ -56,7 +57,21 @@ namespace PetRock
             pictureBox.DoubleClick += PictureBox_DoubleClick;
             pictureBox.MouseEnter += PictureBox_MouseEnter;
             pictureBox.MouseLeave += PictureBox_MouseLeave;
-    
+
+            // Context menu
+
+            contextMenu = new ContextMenuStrip();
+            ToolStripMenuItem customizeItem = new ToolStripMenuItem("Customize");
+            ToolStripMenuItem renameItem = new ToolStripMenuItem("Rename");
+            ToolStripMenuItem exitItem = new ToolStripMenuItem("Exit");
+
+            renameItem.Click += RenameItem_Click;
+
+            contextMenu.Items.Add(customizeItem);
+            contextMenu.Items.Add(renameItem);
+            contextMenu.Items.Add(exitItem);
+
+            pictureBox.ContextMenuStrip = contextMenu;
 
             this.Controls.Add(pictureBox);
 
@@ -68,16 +83,27 @@ namespace PetRock
             byte[] soundData = Properties.Resources.windwoosh;
 
             using (MemoryStream ms = new MemoryStream(soundData))
-        {
-            SoundPlayer player = new SoundPlayer(ms);
-            player.Play(); // Use PlaySync() for blocking playback
-        }
+            {
+                SoundPlayer player = new SoundPlayer(ms);
+                player.Play(); // Use PlaySync() for blocking playback
+            }
 
 
             idleTimer = new Timer();
             idleTimer.Interval = 20;
             idleTimer.Tick += IdleTimer_Tick;
             idleTimer.Start();
+        }
+
+        private void RenameItem_Click(object sender, EventArgs e)
+        {
+            using (NameInputDialog dialog = new NameInputDialog(rockName))
+            {
+                if (dialog.ShowDialog() == DialogResult.OK)  // Check if OK was clicked
+                {
+                    rockName = dialog.InputValue;
+                }
+            }
         }
 
         protected override bool ShowWithoutActivation => true;
@@ -95,6 +121,7 @@ namespace PetRock
 
         private void PictureBox_MouseDown(object sender, MouseEventArgs e)
         {
+
             dragging = true;
             dragCursorPoint = Cursor.Position;
             dragFormPoint = this.Location;
@@ -190,10 +217,7 @@ namespace PetRock
 
         private void PictureBox_MouseEnter(object sender, EventArgs e)
         {
-            if (nameLabelForm == null)
-            {
-                nameLabelForm = new NameLabelForm(rockName);
-            }
+            nameLabelForm = new NameLabelForm(rockName);
 
             int labelX = this.Location.X + 100;
             int labelY = this.Location.Y - nameLabelForm.Height + 100;
@@ -229,4 +253,5 @@ namespace PetRock
                 nameLabelForm.Hide();
         }
     }
+
 }
