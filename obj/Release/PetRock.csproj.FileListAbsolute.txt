@@ -1,9 +1,0 @@
-C:\Users\Ethan\source\repos\pet-rock\bin\Release\PetRock.exe.config
-C:\Users\Ethan\source\repos\pet-rock\bin\Release\PetRock.exe
-C:\Users\Ethan\source\repos\pet-rock\bin\Release\PetRock.pdb
-C:\Users\Ethan\source\repos\pet-rock\obj\Release\PetRock.csproj.AssemblyReference.cache
-C:\Users\Ethan\source\repos\pet-rock\obj\Release\PetRock.Properties.Resources.resources
-C:\Users\Ethan\source\repos\pet-rock\obj\Release\PetRock.csproj.GenerateResource.cache
-C:\Users\Ethan\source\repos\pet-rock\obj\Release\PetRock.csproj.CoreCompileInputs.cache
-C:\Users\Ethan\source\repos\pet-rock\obj\Release\PetRock.exe
-C:\Users\Ethan\source\repos\pet-rock\obj\Release\PetRock.pdb

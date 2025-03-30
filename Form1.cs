@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Media;
 using System.Windows.Forms;
 
@@ -37,7 +38,12 @@ namespace PetRock
             this.TransparencyKey = Color.LimeGreen;
 
             PictureBox pictureBox = new PictureBox();
-            pictureBox.Image = Image.FromFile("rock.png");
+            byte[] imageData = Properties.Resources.rock;
+            using (MemoryStream ms = new MemoryStream(imageData))
+            {
+                Image img = Image.FromStream(ms);
+                pictureBox.Image = img;
+            }
             pictureBox.SizeMode = PictureBoxSizeMode.AutoSize;
             pictureBox.Location = new Point(0, 0);
             pictureBox.Cursor = Cursors.Hand;
@@ -58,8 +64,14 @@ namespace PetRock
             dropTimer.Interval = 20;
             dropTimer.Tick += DropTimer_Tick;
             dropTimer.Start();
-            SoundPlayer player = new SoundPlayer("Wind woosh.wav");
-            player.Play();
+
+            byte[] soundData = Properties.Resources.windwoosh;
+
+            using (MemoryStream ms = new MemoryStream(soundData))
+        {
+            SoundPlayer player = new SoundPlayer(ms);
+            player.Play(); // Use PlaySync() for blocking playback
+        }
 
 
             idleTimer = new Timer();
@@ -154,8 +166,13 @@ namespace PetRock
                 {
                     currentY = targetY;
                     velocity = 0;
-                    SoundPlayer player = new SoundPlayer("rock impact.wav");
-                    player.Play();
+                    byte[] soundData = Properties.Resources.rockimpact;
+
+                    using (MemoryStream ms = new MemoryStream(soundData))
+                    {
+                        SoundPlayer player = new SoundPlayer(ms);
+                        player.Play(); // Use PlaySync() for blocking playback
+                    }
                     dropTimer.Stop();
 
                 }
@@ -188,8 +205,13 @@ namespace PetRock
             {
                 dropTimer.Start();
                 ticksUntilDrop = ticksUntilDropMax;
-                SoundPlayer player = new SoundPlayer("Wind woosh.wav");
-                player.Play();
+                byte[] soundData = Properties.Resources.windwoosh;
+
+                using (MemoryStream ms = new MemoryStream(soundData))
+                {
+                    SoundPlayer player = new SoundPlayer(ms);
+                    player.Play(); // Use PlaySync() for blocking playback
+                }
             }
         }
 
