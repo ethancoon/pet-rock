@@ -1,9 +1,0 @@
-C:\Users\boomc\Development\PetRock\bin\Debug\PetRock.exe.config
-C:\Users\boomc\Development\PetRock\bin\Debug\PetRock.exe
-C:\Users\boomc\Development\PetRock\bin\Debug\PetRock.pdb
-C:\Users\boomc\Development\PetRock\obj\Debug\PetRock.csproj.AssemblyReference.cache
-C:\Users\boomc\Development\PetRock\obj\Debug\PetRock.Properties.Resources.resources
-C:\Users\boomc\Development\PetRock\obj\Debug\PetRock.csproj.GenerateResource.cache
-C:\Users\boomc\Development\PetRock\obj\Debug\PetRock.csproj.CoreCompileInputs.cache
-C:\Users\boomc\Development\PetRock\obj\Debug\PetRock.exe
-C:\Users\boomc\Development\PetRock\obj\Debug\PetRock.pdb
